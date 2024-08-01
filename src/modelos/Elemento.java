@@ -1,3 +1,5 @@
+package modelos;
+
 public abstract class Elemento {
     private String nombre;
     private int cantElementosConstruccion;
@@ -42,5 +44,4 @@ public abstract class Elemento {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
 }

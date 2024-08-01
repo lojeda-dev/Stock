@@ -1,10 +1,11 @@
-public class MateriaPrima extends Elemento {
-    public MateriaPrima(String nombre, int cantElementosConstruccion, int stock, boolean estado) {
-        super(nombre, cantElementosConstruccion, stock, estado);
+package modelos;
 
+public class Componente extends Elemento {
+    public Componente(String nombre, int cantElementosConstruccion, int stock, boolean estado) {
+        super(nombre, cantElementosConstruccion, stock, estado);
     }
 
-    public static class Builder extends BuilderAbstract {
+    public static class Builder extends BuilderAbstracto {
         public Builder setNombre(String nombre) {
             this.nombre = nombre;
             return this;
@@ -25,8 +26,8 @@ public class MateriaPrima extends Elemento {
             return this;
         }
 
-        public MateriaPrima build() {
-            return new MateriaPrima(nombre, cantElementosConstruccion, stock, estado);
+        public Componente build() {
+            return new Componente(nombre, cantElementosConstruccion, stock, estado);
         }
     }
 }

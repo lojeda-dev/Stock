@@ -1,43 +1,63 @@
+import cliente.Empresa;
+import modelos.*;
+
 public class Principal {
     public static void main(String[] args) {
-        /*Componente componente = new Componente("A",2,1,false);
-        MateriaPrima materiaPrima = new MateriaPrima("B",1,5,false);
-        ProductoFinal productoFinal = new ProductoFinal("C",2,5,false);
-        ComponenteCompuesto componenteCompuesto = new ComponenteCompuesto("D",1,1,false);
-        componenteCompuesto.setComponentes(componente);*/
-
-        Fabrica fabrica = new Fabrica();
 
         Componente c = new Componente.Builder()
-                .setNombre("A")
-                .setStock(1)
+                .setNombre("VOLANTE")
                 .setCantElementosConstruccion(1)
+                .setEstado(false)
+                .build();
+
+        Componente c1 = new Componente.Builder()
+                .setNombre("VIDRIO")
+                .setCantElementosConstruccion(4)
                 .setEstado(false)
                 .build();
 
         MateriaPrima mp = new MateriaPrima.Builder()
-                .setNombre("B")
-                .setStock(1)
+                .setNombre("ALUMINIO")
                 .setEstado(false)
-                .setCantElementosConstruccion(1)
+                .setCantElementosConstruccion(2)
                 .build();
 
-        fabrica.cargarElemento(c);
-        fabrica.cargarElemento(c);
-        fabrica.cargarElemento(mp);
-        fabrica.consultarEstado();
-        fabrica.mostrarStock();
+        SubComponenteCompuesto scc = new SubComponenteCompuesto.Builder()
+                .setNombre("CHAPA")
+                .setCantElementosConstruccion(4)
+                .setEstado(false)
+                .setMateriaPrima(mp)
+                .build();
+
+        ComponenteCompuesto cc = new ComponenteCompuesto.Builder()
+                .setNombre("PUERTA")
+                .setCantElementosConstruccion(4)
+                .setEstado(false)
+                .setComponente(c1)
+                .setSubComponenteCompuesto(scc)
+                .build();
+
+        ProductoFinal pf = new ProductoFinal.Builder()
+                .setNombre("CHEVROLET")
+                .setCantElementosConstruccion(2)
+                .setEstado(false)
+                .setComponente(c)
+                .setComponenteCompuesto(cc)
+                .build();
 
 
-        /*Fabrica fabrica = new Fabrica();
-         *//*fabrica.cargarElemento(componente);
-        fabrica.cargarElemento(materiaPrima);
-        fabrica.cargarElemento(productoFinal);
-        fabrica.cargarElemento(componente);
-        fabrica.cargarElemento(componenteCompuesto);*//*
-        fabrica.cargarElemento(componente);
-        fabrica.cargarElemento(componente);
-        fabrica.consultarEstado();
-        fabrica.mostrarStock();*/
+        Empresa.PrimerParte pp = new Empresa.PrimerParte<>();
+
+        pp.cargar(pf);
+        pp.cargar(cc);
+        pp.cargar(scc);
+        pp.cargar(mp);
+        pp.cargar(c);
+        
+        pp.reservar(pf);
+
+        System.out.println("FINAL");
+        pp.mostrarStock();
+        pp.estadoStock();
     }
 }

@@ -1,3 +1,5 @@
+package modelos;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,10 +11,18 @@ public class SubComponenteCompuesto extends Elemento {
         this.materiasprimas = materiasprimas;
     }
 
-    public static class Builder extends BuilderAbstract{
+    public Set<MateriaPrima> getMateriasprimas() {
+        return materiasprimas;
+    }
+
+    public void setMateriasprimas(Set<MateriaPrima> materiasprimas) {
+        this.materiasprimas = materiasprimas;
+    }
+
+    public static class Builder extends BuilderAbstracto {
         private Set<MateriaPrima> materiasprimas;
 
-        public Builder(){
+        public Builder() {
             this.materiasprimas = new HashSet<>();
         }
 
@@ -36,14 +46,14 @@ public class SubComponenteCompuesto extends Elemento {
             return this;
         }
 
-        public Builder setMateriaPrima(MateriaPrima mp){
+        public Builder setMateriaPrima(MateriaPrima mp) {
             this.materiasprimas.add(mp);
             return this;
         }
+
         @Override
         public SubComponenteCompuesto build() {
-            return new SubComponenteCompuesto(nombre,cantElementosConstruccion,stock,estado,materiasprimas);
+            return new SubComponenteCompuesto(nombre, cantElementosConstruccion, stock, estado, materiasprimas);
         }
     }
-
 }

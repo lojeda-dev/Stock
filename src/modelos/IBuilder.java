@@ -1,3 +1,5 @@
+package modelos;
+
 public interface IBuilder<T> {
     T setNombre(String nombre);
 
